@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pytanie</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #fff5f5;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .container {
+            text-align: center;
+            background: #fff;
+            padding: 50px;
+            border-radius: 30px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.05);
+            border: 2px solid #fce4ec;
+        }
+
+        h1 {
+            color: #c2185b;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        button {
+            padding: 15px 35px;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        #yesBtn {
+            background-color: #f06292;
+            color: white;
+        }
+
+        #yesBtn:hover {
+            background-color: #ec407a;
+            transform: translateY(-3px);
+        }
+
+        #noBtn {
+            background-color: #cfd8dc;
+            color: #546e7a;
+        }
+
+        #noBtn:hover {
+            background-color: #b0bec5;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1 id="status">kochasz mnie?</h1>
+        
+        <div id="controls" class="buttons">
+            <button id="yesBtn" onclick="handleYes()">tak</button>
+            <button id="noBtn" onclick="handleNo()">nie</button>
+        </div>
+    </div>
+
+    <script>
+        let counter = 0;
+        const textElement = document.getElementById('status');
+        const controls = document.getElementById('controls');
+
+        function handleYes() {
+            counter++;
+
+            if (counter < 8) {
+                // Tekst zmienia się przy każdym kliknięciu, aby podbić presję
+                const pytania = [
+                    "jesteś pewna?",
+                    "na pewno?",
+                    "serio?",
+                    "nie kłamiesz?",
+                    "obiecujesz?",
+                    "na 100%?",
+                    "ostatnia szansa..."
+                ];
+                textElement.innerText = pytania[counter - 1] || "jesteś pewna?";
+            } else {
+                // Po 8 kliknięciu
+                textElement.innerText = "ja cię też ❤️";
+                controls.classList.add('hidden');
+            }
+        }
+
+        function handleNo() {
+            textElement.innerText = "wiedziałem...";
+            controls.classList.add('hidden');
+        }
+    </script>
+
+</body>
+</html>
